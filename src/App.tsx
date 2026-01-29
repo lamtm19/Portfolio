@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -31,6 +31,28 @@ const App: React.FC = () => {
   const [activeLang, setActiveLang] = useState(i18n.language);
   const [copied, setCopied] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState('');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const sections = ['skills', 'projects', 'beyond', 'contact'];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const nextProject = () => setCurrentIndex((prev) => (prev + 1) % projects.length);
   const prevProject = () => setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
@@ -108,10 +130,30 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="font-bold text-xl tracking-tight text-slate-900">&lt;LT&gt;</span>
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
-            <a href="#skills" className="hover:text-blue-600 transition-colors">{t('nav.skills')}</a>
-            <a href="#projects" className="hover:text-blue-600 transition-colors">{t('nav.projects')}</a>
-            <a href="#beyond" className="hover:text-blue-600 transition-colors">{t('nav.about')}</a>
-            <a href="#contact" className="hover:text-blue-600 transition-colors">{t('nav.contact')}</a>
+            <a 
+              href="#skills" 
+              className={`transition-colors hover:text-blue-600 ${activeSection === 'skills' ? 'text-blue-600' : ''}`}
+            >
+              {t('nav.skills')}
+            </a>
+            <a 
+              href="#projects" 
+              className={`transition-colors hover:text-blue-600 ${activeSection === 'projects' ? 'text-blue-600' : ''}`}
+            >
+              {t('nav.projects')}
+            </a>
+            <a 
+              href="#beyond" 
+              className={`transition-colors hover:text-blue-600 ${activeSection === 'beyond' ? 'text-blue-600' : ''}`}
+            >
+              {t('nav.about')}
+            </a>
+            <a 
+              href="#contact" 
+              className={`transition-colors hover:text-blue-600 ${activeSection === 'contact' ? 'text-blue-600' : ''}`}
+            >
+              {t('nav.contact')}
+            </a>
           </div>
           <button 
             onClick={toggleLang}
