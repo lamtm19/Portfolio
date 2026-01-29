@@ -10,7 +10,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "KeepCloud",
-    description: "Application de gestion de tâches.",
+    description: "projects.keepcloud.desc",
     liveUrl: "https://gestion-de-tache-lam.netlify.app/",
     githubUrl: "https://github.com/lamtm19/Application-de-gestion-de-taches",
     image: "resources/projects/project-01.png",
@@ -19,7 +19,7 @@ export const projects: Project[] = [
   // Ajouter de nouveaux projets ici
   {
     title: "Memory",
-    description: "Jeu de cartes intéractif pour entraîner la mémoire visuelle.",
+    description: "projects.memory.desc",
     liveUrl: "https://memory-lam.netlify.app/",
     githubUrl: "https://github.com/lamtm19/Memory/tree/main",
     image: "resources/projects/project-04.png",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
   },
   {
     title: "ABBPC",
-    description: "Refonte du site web d'une entreprise de services informatiques.",
+    description: "projects.abbpc.desc",
     liveUrl: "https://refonte-site-abbpc-lam.netlify.app/",
     githubUrl: "https://github.com/lamtm19/refonte-site-abbpc",
     image: "resources/projects/project-02.png",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
   },
   {
     title: "Crakitoko",
-    description: "Projet personnel d'un jeu en ligne reprenant le concept du jeu de société Cracklist.",
+    description: "projects.crakitoko.desc",
     liveUrl: "https://jeu-cracklist-lam.netlify.app/",
     githubUrl: "https://github.com/lamtm19/jeu-cracklist",
     image: "resources/projects/project-03.png",

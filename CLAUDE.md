@@ -27,7 +27,7 @@ Ce portfolio est conçu pour être performant, moderne et extrêmement facile à
 
 ## Structure des ressources
 
-Toutes les ressources doivent être placées dans le dossier `resources/` à la racine :
+Toutes les ressources doivent être placées dans le dossier `public/resources/` :
 - `/profile` : Photo de profil (`profile.jpg`)
 - `/projects` : Captures d'écran des projets
 - `/extras` : Photos pour la section "Au-delà du code"

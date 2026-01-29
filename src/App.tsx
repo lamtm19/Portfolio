@@ -51,11 +51,11 @@ const App: React.FC = () => {
 
   const getIcon = (category: string) => {
     switch (category) {
-      case 'Front-end': return <Layout className="w-6 h-6 text-blue-500" />;
-      case 'Back-end': return <Code2 className="w-6 h-6 text-indigo-500" />;
-      case 'Bases de données': return <Database className="w-6 h-6 text-emerald-500" />;
-      case 'DevOps / Infrastructure': return <Cpu className="w-6 h-6 text-purple-500" />;
-      case 'Outils & versioning': return <Wrench className="w-6 h-6 text-slate-500" />;
+      case 'skills.frontend': return <Layout className="w-6 h-6 text-blue-500" />;
+      case 'skills.backend': return <Code2 className="w-6 h-6 text-indigo-500" />;
+      case 'skills.database': return <Database className="w-6 h-6 text-emerald-500" />;
+      case 'skills.devops': return <Cpu className="w-6 h-6 text-purple-500" />;
+      case 'skills.tools': return <Wrench className="w-6 h-6 text-slate-500" />;
       default: return <Code2 className="w-6 h-6 text-blue-500" />;
     }
   };
@@ -219,7 +219,7 @@ const App: React.FC = () => {
                     <div className="p-2 bg-slate-50 rounded-lg">
                       {getIcon(cat.title)}
                     </div>
-                    <h3 className="font-semibold text-lg">{cat.title}</h3>
+                    <h3 className="font-semibold text-lg">{t(cat.title)}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {cat.skills.map(skill => (
@@ -230,7 +230,7 @@ const App: React.FC = () => {
                           className="w-5 h-5" 
                           onError={(e) => (e.currentTarget.style.display = 'none')}
                         />
-                        <span>{skill}</span>
+                        <span>{t(skill)}</span>
                       </span>
                     ))}
                   </div>
@@ -269,9 +269,9 @@ const App: React.FC = () => {
                         </span>
                       ))}
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                    <h3 className="text-xl font-bold mb-2">{t(project.title)}</h3>
                     <p className="text-slate-600 text-sm mb-6 line-clamp-2">
-                      {project.description}
+                      {t(project.description)}
                     </p>
                     <div className="flex space-x-4">
                       {project.liveUrl && (
@@ -307,7 +307,7 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">{t('extras.title')}</h2>
             <p className="text-slate-400 mb-12 max-w-2xl">
-              Mon parcours ne s'arrête pas au développement. Voici ce qui forge ma discipline, ma créativité et mon esprit d'équipe.
+              {t('extras.subtitle')}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {extras.map((extra) => (
@@ -342,15 +342,15 @@ const App: React.FC = () => {
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div className="p-2 bg-white/10 rounded-lg">
-                        {(extra.title.includes('Barber') || extra.title.includes('Coiffeur')) && <Scissors className="w-5 h-5" />}
-                        {extra.title.includes('Vidéo') && <Video className="w-5 h-5" />}
-                        {(extra.title.includes('Football') || extra.title.includes('Sport')) && <Trophy className="w-5 h-5" />}
+                        {(extra.title.includes('Barber') || extra.title.includes('Coiffeur') || extra.title.includes('barber')) && <Scissors className="w-5 h-5" />}
+                        {(extra.title.includes('Vidéo') || extra.title.includes('video')) && <Video className="w-5 h-5" />}
+                        {(extra.title.includes('Football') || extra.title.includes('Sport') || extra.title.includes('football')) && <Trophy className="w-5 h-5" />}
                       </div>
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400">{extra.category}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400">{t(extra.category)}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-3">{extra.title}</h3>
+                    <h3 className="text-xl font-bold mb-3">{t(extra.title)}</h3>
                     <p className="text-slate-400 text-sm leading-relaxed">
-                      {extra.description}
+                      {t(extra.description)}
                     </p>
                   </div>
                 </motion.div>
@@ -419,7 +419,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="py-12 border-t border-slate-100 text-center text-slate-400 text-sm">
-        <p>© {new Date().getFullYear()} Lam Tham Vo </p>
+        <p>© {new Date().getFullYear()} Lam Tham Vo. {t('footer.text')}</p>
       </footer>
     </div>
   );
