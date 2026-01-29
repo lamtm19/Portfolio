@@ -19,8 +19,7 @@ import {
   Trophy,
   ChevronRight,
   Copy,
-  Check,
-  Send
+  Check
 } from 'lucide-react';
 import { projects } from './data/projects';
 import { skillCategories } from './data/skills';
@@ -30,23 +29,11 @@ const App: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [activeLang, setActiveLang] = useState(i18n.language);
   const [copied, setCopied] = useState(false);
-  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success'>('idle');
 
   const copyEmail = () => {
     navigator.clipboard.writeText('lamtham.dev@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus('sending');
-    // Simulation d'envoi
-    setTimeout(() => {
-      setFormStatus('success');
-      (e.target as HTMLFormElement).reset();
-      setTimeout(() => setFormStatus('idle'), 5000);
-    }, 1500);
   };
 
   const toggleLang = () => {
