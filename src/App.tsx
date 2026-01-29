@@ -103,8 +103,8 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="font-bold text-xl tracking-tight text-slate-900">&lt;LT&gt;</span>
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
-            <a href="#projects" className="hover:text-blue-600 transition-colors">{t('nav.projects')}</a>
             <a href="#skills" className="hover:text-blue-600 transition-colors">{t('nav.skills')}</a>
+            <a href="#projects" className="hover:text-blue-600 transition-colors">{t('nav.projects')}</a>
             <a href="#beyond" className="hover:text-blue-600 transition-colors">{t('nav.about')}</a>
             <a href="#contact" className="hover:text-blue-600 transition-colors">{t('nav.contact')}</a>
           </div>
@@ -342,9 +342,9 @@ const App: React.FC = () => {
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <div className="p-2 bg-white/10 rounded-lg">
-                        {extra.title.includes('Barber') && <Scissors className="w-5 h-5" />}
+                        {(extra.title.includes('Barber') || extra.title.includes('Coiffeur')) && <Scissors className="w-5 h-5" />}
                         {extra.title.includes('Vidéo') && <Video className="w-5 h-5" />}
-                        {extra.title.includes('Football') && <Trophy className="w-5 h-5" />}
+                        {(extra.title.includes('Football') || extra.title.includes('Sport')) && <Trophy className="w-5 h-5" />}
                       </div>
                       <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400">{extra.category}</span>
                     </div>
