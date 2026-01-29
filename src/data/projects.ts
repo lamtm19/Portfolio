@@ -41,4 +41,12 @@ export const projects: Project[] = [
     image: "resources/projects/project-03.png",
     tags: ["HTML","CSS", "JavaScript"]
   },
+  {
+    title: "Crakitoko",
+    description: "Projet personnel d'un jeu en ligne reprenant le concept du jeu de société Cracklist.",
+    liveUrl: "https://jeu-cracklist-lam.netlify.app/",
+    githubUrl: "https://github.com/lamtm19/jeu-cracklist",
+    image: "resources/projects/project-03.png",
+    tags: ["HTML","CSS", "JavaScript"]
+  },
 ];
