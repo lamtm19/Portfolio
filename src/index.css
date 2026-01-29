@@ -11,7 +11,12 @@ body {
 }
 
 .glass-card {
-  @apply bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm rounded-2xl;
+  @apply bg-white border border-slate-200 shadow-sm rounded-2xl;
+  will-change: transform, opacity;
+}
+
+img, video {
+  will-change: opacity;
 }
 
 .section-padding {

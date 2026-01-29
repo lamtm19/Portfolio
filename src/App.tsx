@@ -43,10 +43,10 @@ const App: React.FC = () => {
   };
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
+    initial: { opacity: 0, y: 15 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.5 }
+    viewport: { once: true, margin: "-50px" },
+    transition: { duration: 0.4, ease: "easeOut" }
   };
 
   const getIcon = (category: string) => {
@@ -101,7 +101,7 @@ const App: React.FC = () => {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-lg border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="font-bold text-xl tracking-tight text-blue-600">&lt;LT&gt;</span>
+          <span className="font-bold text-xl tracking-tight text-slate-900">&lt;LT&gt;</span>
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
             <a href="#projects" className="hover:text-blue-600 transition-colors">{t('nav.projects')}</a>
             <a href="#skills" className="hover:text-blue-600 transition-colors">{t('nav.skills')}</a>
