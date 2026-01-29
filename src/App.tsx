@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Github, 
   Linkedin, 
@@ -18,6 +18,7 @@ import {
   Video,
   Trophy,
   ChevronRight,
+  ChevronLeft,
   Copy,
   Check
 } from 'lucide-react';
@@ -29,6 +30,10 @@ const App: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [activeLang, setActiveLang] = useState(i18n.language);
   const [copied, setCopied] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextProject = () => setCurrentIndex((prev) => (prev + 1) % projects.length);
+  const prevProject = () => setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
 
   const copyEmail = () => {
     navigator.clipboard.writeText('lamtham.dev@gmail.com');
@@ -241,62 +246,111 @@ const App: React.FC = () => {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="section-padding">
+        <section id="projects" className="section-padding overflow-hidden">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12">{t('projects.title')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.map((project) => (
-                <motion.div 
-                  key={project.title}
-                  {...fadeInUp}
-                  className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300"
+            <h2 className="text-3xl font-bold mb-12 text-center">{t('projects.title')}</h2>
+            
+            <div className="relative h-[500px] md:h-[600px] flex items-center justify-center">
+              {/* Navigation */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-4 md:px-12 z-40 pointer-events-none">
+                <button 
+                  onClick={prevProject}
+                  className="p-3 bg-white/80 backdrop-blur rounded-full shadow-xl border border-slate-200 hover:bg-white transition-all pointer-events-auto active:scale-90"
                 >
-                  <div className="aspect-[2.2/1] overflow-hidden bg-slate-100">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/800x450?text=" + project.title)}
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="text-[10px] uppercase tracking-wider font-bold text-blue-600 px-2 py-0.5 bg-blue-50 rounded">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="text-xl font-bold mb-2">{t(project.title)}</h3>
-                    <p className="text-slate-600 text-sm mb-6 line-clamp-2">
-                      {t(project.description)}
-                    </p>
-                    <div className="flex space-x-4">
-                      {project.liveUrl && (
-                        <a 
-                          href={project.liveUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-1.5" />
-                          {t('projects.visit')}
-                        </a>
-                      )}
-                      <a 
-                        href={project.githubUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors"
-                      >
-                        <Github className="w-4 h-4 mr-1.5" />
-                        {t('projects.github')}
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button 
+                  onClick={nextProject}
+                  className="p-3 bg-white/80 backdrop-blur rounded-full shadow-xl border border-slate-200 hover:bg-white transition-all pointer-events-auto active:scale-90"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="relative w-full h-full flex items-center justify-center [perspective:1000px]">
+                {projects.map((project, index) => {
+                  let offset = index - currentIndex;
+                  
+                  // Gérer la boucle infinie pour l'affichage gauche/droite
+                  if (offset < -1) offset += projects.length;
+                  if (offset > 1) offset -= projects.length;
+
+                  const isActive = offset === 0;
+                  const isVisible = Math.abs(offset) <= 1;
+
+                  return (
+                    <motion.div
+                      key={project.title}
+                      initial={false}
+                      animate={{
+                        x: offset * (window.innerWidth < 768 ? 320 : 600),
+                        scale: isActive ? 1 : 0.7,
+                        opacity: isActive ? 1 : 0.4,
+                        zIndex: isActive ? 30 : 20,
+                        rotateY: offset * -20,
+                        filter: isActive ? "blur(0px)" : "blur(4px)",
+                      }}
+                      transition={{ type: "spring", stiffness: 250, damping: 25 }}
+                      className={`absolute w-[320px] md:w-[750px] bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-2xl ${!isActive ? 'pointer-events-none' : ''}`}
+                    >
+                      <div className="aspect-[2.2/1] overflow-hidden bg-slate-100 relative group">
+                        <img 
+                          src={project.image} 
+                          alt={t(project.title)} 
+                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      
+                      <div className="p-8">
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.tags.map(tag => (
+                            <span key={tag} className="text-[10px] uppercase tracking-wider font-bold text-blue-600 px-2.5 py-1 bg-blue-50 rounded-md">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="text-2xl font-bold mb-3">{t(project.title)}</h3>
+                        <p className="text-slate-600 text-base mb-8 line-clamp-2">
+                          {t(project.description)}
+                        </p>
+                        
+                        <div className="flex items-center space-x-6">
+                          {project.liveUrl && (
+                            <a 
+                              href={project.liveUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex items-center text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 hover:border-blue-100"
+                            >
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              {t('projects.visit')}
+                            </a>
+                          )}
+                          <a 
+                            href={project.githubUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 hover:border-blue-100"
+                          >
+                            <Github className="w-4 h-4 mr-2" />
+                            {t('projects.github')}
+                          </a>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+            
+            {/* Pagination Dots */}
+            <div className="flex justify-center space-x-2 mt-8">
+              {projects.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-8 bg-blue-600' : 'bg-slate-300'}`}
+                />
               ))}
             </div>
           </div>
