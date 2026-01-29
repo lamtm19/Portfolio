@@ -7,20 +7,20 @@ export interface Extra {
 
 export const extras: Extra[] = [
   {
-    title: "Barber / Coiffeur",
-    description: "Auto-entrepreneur passionné par le détail et la relation client. La coiffure m'a appris la discipline et la rigueur.",
+    title: "Coiffeur / Barbier",
+    description: "Auto-entrepreneur, habitué à gérer une forte clientèle avec une centaine de clients par mois. La coiffure m’a appris la discipline, la rigueur et l’exigence du détail, ainsi qu’une vraie maîtrise de la relation client.",
     image: "resources/extras/lamsbarber.mp4",
     category: "Discipline & Relation Client"
   },
   {
     title: "Vidéo / Vlog",
-    description: "Réalisation et montage vidéo. Un œil créatif pour raconter des histoires et capturer l'instant.",
+    description: "Réalisation et montage vidéo, guidé par la créativité et le plaisir de raconter des histoires à travers l’image.",
     image: "resources/extras/video-01.mp4",
     category: "Créativité"
   },
   {
     title: "Football en équipe",
-    description: "Pratique en club. L'esprit d'équipe, la communication et l'effort collectif vers un but commun.",
+    description: "Investi au sein d’une association, j’ai déjà encadré des équipes et aidé à l’organisation d’événements. Le football en équipe fait partie de nos activités et reflète des valeurs de partage, de solidarité et de travail collectif.",
     image: "resources/extras/YujiNike.mp4",
     category: "Esprit d'équipe"
   }
