@@ -101,7 +101,7 @@ const App: React.FC = () => {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-lg border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="font-bold text-xl tracking-tight">LTV</span>
+          <span className="font-bold text-xl tracking-tight text-blue-600">&lt;LT&gt;</span>
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
             <a href="#projects" className="hover:text-blue-600 transition-colors">{t('nav.projects')}</a>
             <a href="#skills" className="hover:text-blue-600 transition-colors">{t('nav.skills')}</a>
@@ -256,6 +256,7 @@ const App: React.FC = () => {
                       src={project.image} 
                       alt={project.title} 
                       loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/800x450?text=" + project.title)}
                     />
@@ -324,7 +325,7 @@ const App: React.FC = () => {
                         muted 
                         loop 
                         playsInline
-                        preload="none"
+                        preload="metadata"
                         poster={extra.image.replace('.mp4', '.jpg')}
                       />
                     ) : (
@@ -332,6 +333,7 @@ const App: React.FC = () => {
                         src={extra.image} 
                         alt={extra.title} 
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         onError={(e) => (e.currentTarget.src = `https://via.placeholder.com/600x400?text=${extra.title}`)}
                       />
