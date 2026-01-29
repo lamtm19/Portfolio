@@ -132,6 +132,7 @@ const App: React.FC = () => {
                 src="resources/profile/profile.jpg" 
                 alt="Lam Tham Vo" 
                 className="w-full h-full object-cover"
+                fetchPriority="high"
                 onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/600?text=LTV")}
               />
             </div>
@@ -254,6 +255,7 @@ const App: React.FC = () => {
                     <img 
                       src={project.image} 
                       alt={project.title} 
+                      loading="lazy"
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/800x450?text=" + project.title)}
                     />
@@ -322,11 +324,14 @@ const App: React.FC = () => {
                         muted 
                         loop 
                         playsInline
+                        preload="none"
+                        poster={extra.image.replace('.mp4', '.jpg')}
                       />
                     ) : (
                       <img 
                         src={extra.image} 
                         alt={extra.title} 
+                        loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         onError={(e) => (e.currentTarget.src = `https://via.placeholder.com/600x400?text=${extra.title}`)}
                       />
