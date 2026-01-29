@@ -99,7 +99,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-lg border-b border-slate-200">
+      <nav className="fixed top-0 w-full z-50 bg-white/90 border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="font-bold text-xl tracking-tight text-slate-900">&lt;LT&gt;</span>
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
@@ -418,7 +418,7 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <footer className="py-12 border-t border-slate-100 text-center text-slate-400 text-sm">
+      <footer className="py-12 bg-slate-200 border-t border-slate-300 text-center text-slate-600 text-sm">
         <p>{new Date().getFullYear()} - Lam Tham Vo</p>
       </footer>
     </div>
