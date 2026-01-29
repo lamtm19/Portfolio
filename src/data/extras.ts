@@ -19,7 +19,7 @@ export const extras: Extra[] = [
     category: "Créativité"
   },
   {
-    title: "Football en équipe",
+    title: "Football en équipe & engagement associatif",
     description: "Investi au sein d’une association, j’ai déjà encadré des équipes et aidé à l’organisation d’événements. Le football en équipe fait partie de nos activités et reflète des valeurs de partage, de solidarité et de travail collectif.",
     image: "resources/extras/YujiNike.mp4",
     category: "Esprit d'équipe"
