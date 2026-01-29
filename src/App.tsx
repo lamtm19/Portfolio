@@ -419,7 +419,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="py-12 border-t border-slate-100 text-center text-slate-400 text-sm">
-        <p>© {new Date().getFullYear()} Lam Tham Vo. {t('footer.text')}</p>
+        <p>{new Date().getFullYear()} - Lam Tham Vo</p>
       </footer>
     </div>
   );
