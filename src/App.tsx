@@ -38,11 +38,16 @@ const App: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            setActiveSection((prev) => {
+              if (prev !== entry.target.id) {
+                return entry.target.id;
+              }
+              return prev;
+            });
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     const sections = ['skills', 'projects', 'beyond', 'contact'];
@@ -70,10 +75,10 @@ const App: React.FC = () => {
   };
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 15 },
+    initial: { opacity: 0, y: 10 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-50px" },
-    transition: { duration: 0.4, ease: "easeOut" }
+    viewport: { once: true, margin: "-20px" },
+    transition: { duration: 0.3, ease: "easeOut" }
   };
 
   const getIcon = (category: string) => {
@@ -297,13 +302,13 @@ const App: React.FC = () => {
               <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-4 md:px-12 z-40 pointer-events-none">
                 <button 
                   onClick={prevProject}
-                  className="p-3 bg-white/80 backdrop-blur rounded-full shadow-xl border border-slate-200 hover:bg-white transition-all pointer-events-auto active:scale-90"
+                  className="p-3 bg-white rounded-full shadow-lg border border-slate-200 hover:bg-slate-50 transition-all pointer-events-auto active:scale-90"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button 
                   onClick={nextProject}
-                  className="p-3 bg-white/80 backdrop-blur rounded-full shadow-xl border border-slate-200 hover:bg-white transition-all pointer-events-auto active:scale-90"
+                  className="p-3 bg-white rounded-full shadow-lg border border-slate-200 hover:bg-slate-50 transition-all pointer-events-auto active:scale-90"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
@@ -325,14 +330,12 @@ const App: React.FC = () => {
                       initial={false}
                       animate={{
                         x: offset * (window.innerWidth < 768 ? 320 : 600),
-                        scale: isActive ? 1 : 0.7,
-                        opacity: isActive ? 1 : 0.4,
+                        scale: isActive ? 1 : 0.85,
+                        opacity: isActive ? 1 : 0.3,
                         zIndex: isActive ? 30 : 20,
-                        rotateY: offset * -20,
-                        filter: isActive ? "blur(0px)" : "blur(4px)",
                       }}
-                      transition={{ type: "spring", stiffness: 250, damping: 25 }}
-                      className={`absolute w-[320px] md:w-[750px] bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-2xl ${!isActive ? 'pointer-events-none' : ''}`}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      className={`absolute w-[320px] md:w-[750px] bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-xl ${!isActive ? 'pointer-events-none' : ''}`}
                     >
                       <div className="aspect-[2.2/1] overflow-hidden bg-slate-100 relative group">
                         <img 
