@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   Github, 
   Linkedin, 
@@ -318,7 +318,6 @@ const App: React.FC = () => {
                   if (offset > 1) offset -= projects.length;
 
                   const isActive = offset === 0;
-                  const isVisible = Math.abs(offset) <= 1;
 
                   return (
                     <motion.div
