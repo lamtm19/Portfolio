@@ -297,7 +297,7 @@ const App: React.FC = () => {
               <ChevronRight className="w-4 h-4 ml-2" />
             </motion.button>
             <motion.button 
-              onClick={() => scrollToSection('downloads')}
+              onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-blue-700 transition-all flex items-center"
