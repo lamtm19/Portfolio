@@ -285,7 +285,7 @@ const App: React.FC = () => {
               <ChevronRight className="w-4 h-4 ml-2" />
             </motion.button>
             <motion.button 
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('downloads')}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.95 }}
               className="bg-blue-600 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-blue-700 transition-all flex items-center"
@@ -534,7 +534,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Boutons CV & LM */}
-              <div className="grid grid-cols-2 gap-4">
+              <div id="downloads" className="grid grid-cols-2 gap-4">
                 <button 
                   onClick={handleDownloadCV}
                   className="flex items-center justify-center bg-slate-900 text-white px-4 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
