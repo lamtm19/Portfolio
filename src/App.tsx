@@ -74,20 +74,25 @@ const App: React.FC = () => {
     setActiveLang(newLang);
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     const files = [
       { name: 'CV_Lam_ThamVo.pdf', path: 'resources/docs/CV_Lam_ThamVo.pdf' },
       { name: 'Lettre_de_motivation_Lam_ThamVo.pdf', path: 'resources/docs/Lettre_de_motivation_Lam_ThamVo.pdf' }
     ];
 
-    files.forEach(file => {
+    // Téléchargement séquentiel avec délai pour éviter le blocage sur mobile
+    for (const file of files) {
       const link = document.createElement('a');
       link.href = file.path;
       link.download = file.name;
+      link.target = '_blank';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    });
+      
+      // Délai entre chaque téléchargement (nécessaire pour mobile)
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
   };
 
   const fadeInUp = {
