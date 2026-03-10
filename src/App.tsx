@@ -74,25 +74,31 @@ const App: React.FC = () => {
     setActiveLang(newLang);
   };
 
-  const handleDownload = async () => {
-    const files = [
-      { name: 'CV_Lam_ThamVo.pdf', path: 'resources/docs/CV_Lam_ThamVo.pdf' },
-      { name: 'Lettre_de_motivation_Lam_ThamVo.pdf', path: 'resources/docs/Lettre_de_motivation_Lam_ThamVo.pdf' }
-    ];
-
-    // Téléchargement séquentiel avec délai pour éviter le blocage sur mobile
-    for (const file of files) {
-      const link = document.createElement('a');
-      link.href = file.path;
-      link.download = file.name;
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      // Délai entre chaque téléchargement (nécessaire pour mobile)
-      await new Promise(resolve => setTimeout(resolve, 500));
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = 'resources/docs/CV_Lam_ThamVo.pdf';
+    link.download = 'CV_Lam_ThamVo.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownloadLM = () => {
+    const link = document.createElement('a');
+    link.href = 'resources/docs/Lettre_de_motivation_Lam_ThamVo.pdf';
+    link.download = 'Lettre_de_motivation_Lam_ThamVo.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const fadeInUp = {
@@ -264,16 +270,32 @@ const App: React.FC = () => {
             </button>
           </motion.div>
           
-          <motion.a 
-            href="#projects"
+          {/* Boutons avec animation de scroll */}
+          <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="bg-slate-900 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 flex items-center"
+            className="flex flex-col sm:flex-row gap-4"
           >
-            {t('hero.cta')}
-            <ChevronRight className="w-4 h-4 ml-2" />
-          </motion.a>
+            <motion.button 
+              onClick={() => scrollToSection('projects')}
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-slate-900 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-slate-800 transition-all flex items-center"
+            >
+              {t('hero.cta')}
+              <ChevronRight className="w-4 h-4 ml-2" />
+            </motion.button>
+            <motion.button 
+              onClick={() => scrollToSection('contact')}
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-blue-600 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-blue-700 transition-all flex items-center"
+            >
+              <Download className="w-4 h-4 mr-2" />
+              {t('hero.download')}
+            </motion.button>
+          </motion.div>
         </section>
 
         {/* Skills Section */}
@@ -513,14 +535,23 @@ const App: React.FC = () => {
                 </button>
               </div>
 
-              {/* Bouton CV & LM */}
-              <button 
-                onClick={handleDownload}
-                className="w-full flex items-center justify-center bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
-              >
-                <Download className="w-5 h-5 mr-3" />
-                {t('contact.cv')}
-              </button>
+              {/* Boutons CV & LM */}
+              <div className="grid grid-cols-2 gap-4">
+                <button 
+                  onClick={handleDownloadCV}
+                  className="flex items-center justify-center bg-slate-900 text-white px-4 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  {t('contact.cv')}
+                </button>
+                <button 
+                  onClick={handleDownloadLM}
+                  className="flex items-center justify-center bg-slate-900 text-white px-4 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  {t('contact.lm')}
+                </button>
+              </div>
 
               {/* Réseaux Sociaux */}
               <div className="flex justify-center space-x-6 pt-8">
