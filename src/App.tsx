@@ -242,10 +242,9 @@ const App: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="flex items-center text-slate-500 mb-10"
+            className="text-slate-500 mb-10"
           >
-            <MapPin className="w-4 h-4 mr-2" />
-            <span>{t('hero.subtitle')}</span>
+            <p className="text-center">{t('hero.subtitle')}</p>
           </motion.div>
           
           <motion.div 
@@ -281,7 +280,7 @@ const App: React.FC = () => {
               onClick={() => scrollToSection('projects')}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-slate-900 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-slate-800 transition-all flex items-center"
+              className="bg-slate-900 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:bg-slate-800 transition-all flex items-center justify-center"
             >
               {t('hero.cta')}
               <ChevronRight className="w-4 h-4 ml-2" />
@@ -342,18 +341,18 @@ const App: React.FC = () => {
             
             <div className="relative h-[500px] md:h-[600px] flex items-center justify-center">
               {/* Navigation */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-4 md:px-12 z-40 pointer-events-none">
+              <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 md:left-0 md:right-0 flex justify-between px-0 md:px-12 z-40 pointer-events-none">
                 <button 
                   onClick={prevProject}
-                  className="p-3 bg-white rounded-full shadow-lg border border-slate-200 hover:bg-slate-50 transition-all pointer-events-auto active:scale-90"
+                  className="p-2 md:p-3 bg-white rounded-full shadow-lg border border-slate-200 hover:bg-slate-50 transition-all pointer-events-auto active:scale-90 -ml-2 md:ml-0"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
                 <button 
                   onClick={nextProject}
-                  className="p-3 bg-white rounded-full shadow-lg border border-slate-200 hover:bg-slate-50 transition-all pointer-events-auto active:scale-90"
+                  className="p-2 md:p-3 bg-white rounded-full shadow-lg border border-slate-200 hover:bg-slate-50 transition-all pointer-events-auto active:scale-90 -mr-2 md:mr-0"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
               </div>
 
