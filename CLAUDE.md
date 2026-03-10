@@ -31,7 +31,7 @@ Toutes les ressources doivent être placées dans le dossier `public/resources/`
 - `/profile` : Photo de profil (`profile.jpg`)
 - `/projects` : Captures d'écran des projets
 - `/extras` : Photos pour la section "Au-delà du code"
-- `/cv` : CV au format PDF (`lam-tham-vo-cv.pdf`)
+- `/docs` : CV (`CV_Lam_ThamVo.pdf`) et Lettre de motivation (`Lettre_de_motivation_Lam_ThamVo.pdf`)
 
 ## Stack Technique
 - **React** + **TypeScript** + **Vite**

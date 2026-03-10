@@ -74,6 +74,22 @@ const App: React.FC = () => {
     setActiveLang(newLang);
   };
 
+  const handleDownload = () => {
+    const files = [
+      { name: 'CV_Lam_ThamVo.pdf', path: 'resources/docs/CV_Lam_ThamVo.pdf' },
+      { name: 'Lettre_de_motivation_Lam_ThamVo.pdf', path: 'resources/docs/Lettre_de_motivation_Lam_ThamVo.pdf' }
+    ];
+
+    files.forEach(file => {
+      const link = document.createElement('a');
+      link.href = file.path;
+      link.download = file.name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  };
+
   const fadeInUp = {
     initial: { opacity: 0, y: 10 },
     whileInView: { opacity: 1, y: 0 },
@@ -492,15 +508,14 @@ const App: React.FC = () => {
                 </button>
               </div>
 
-              {/* Bouton CV */}
-              <a 
-                href="resources/cv/lam-tham-vo-cv.pdf" 
-                download
+              {/* Bouton CV & LM */}
+              <button 
+                onClick={handleDownload}
                 className="w-full flex items-center justify-center bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200"
               >
                 <Download className="w-5 h-5 mr-3" />
                 {t('contact.cv')}
-              </a>
+              </button>
 
               {/* Réseaux Sociaux */}
               <div className="flex justify-center space-x-6 pt-8">
