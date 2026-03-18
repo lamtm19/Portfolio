@@ -26,6 +26,22 @@ export const projects: Project[] = [
     tags: ["Vue.js"]
   },
   {
+    title: "Pause du Champion",
+    description: "projects.pauseduchampion.desc",
+    liveUrl: "https://pause-du-champion.vercel.app/",
+    githubUrl: "https://github.com/lamtm19/Application_Muscu",
+    image: "resources/projects/project-05.png",
+    tags: ["HTML","CSS", "JavaScript"]
+  },
+  {
+    title: "Coffrette",
+    description: "projects.coffrette.desc",
+    liveUrl: "https://coffrette.vercel.app/",
+    githubUrl: "https://github.com/lamtm19/coffrette",
+    image: "resources/projects/project-06.png",
+    tags: ["HTML","CSS", "JavaScript"]
+  },
+  {
     title: "ABBPC",
     description: "projects.abbpc.desc",
     liveUrl: "https://refonte-site-abbpc-lam.netlify.app/",
