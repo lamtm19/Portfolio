@@ -26,14 +26,6 @@ export const projects: Project[] = [
     tags: ["Vue.js"]
   },
   {
-    title: "Pause du Champion",
-    description: "projects.pauseduchampion.desc",
-    liveUrl: "https://pause-du-champion.vercel.app/",
-    githubUrl: "https://github.com/lamtm19/Application_Muscu",
-    image: "resources/projects/project-05.png",
-    tags: ["HTML","CSS", "JavaScript"]
-  },
-  {
     title: "Coffrette",
     description: "projects.coffrette.desc",
     liveUrl: "https://coffrette.vercel.app/",
@@ -55,6 +47,14 @@ export const projects: Project[] = [
     liveUrl: "https://jeu-cracklist-lam.netlify.app/",
     githubUrl: "https://github.com/lamtm19/jeu-cracklist",
     image: "resources/projects/project-03.png",
+    tags: ["HTML","CSS", "JavaScript"]
+  },
+  {
+    title: "Pause du Champion",
+    description: "projects.pauseduchampion.desc",
+    liveUrl: "https://pause-du-champion.vercel.app/",
+    githubUrl: "https://github.com/lamtm19/Application_Muscu",
+    image: "resources/projects/project-05.png",
     tags: ["HTML","CSS", "JavaScript"]
   },
 ];
